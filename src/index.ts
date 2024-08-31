@@ -34,18 +34,12 @@ export default defineHook(({ init }) => {
 			if (topRoute.name !== 'router' || !regexp.endsWith('\\/?(?=\\/|$)/i') || regexp.length <= 15) {
 				continue;
 			}
-			console.log("===allowAuthenticated")
-			console.log(allowAuthenticated)
 
 			const topRoutePath = regexp.slice(4, -13);
 
 			if (bypassRoutes.includes(topRoutePath)) {
 				continue;
 			}
-			console.log("===bypassRoutes")
-			console.log(bypassRoutes)
-			console.log("===topRoutePath")
-			console.log(topRoutePath)
 
 			const checkFilterPath = topRoutePath === 'items' ? '/:collection' : '/';
 
@@ -71,9 +65,6 @@ export default defineHook(({ init }) => {
 					) {
 						return currentHandle(req, res, next);
 					}
-					
-					console.log("===req.accountability")
-					console.log(req.accountability)
 
 					return next(new ForbiddenError());
 				};
